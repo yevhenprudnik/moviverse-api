@@ -9,6 +9,7 @@ const collectionSchema = new Schema(
       ref: 'user',
       required: false,
     },
+    image: { type: String, required: false },
     movies: [
       { type: mongoose.SchemaTypes.ObjectId, ref: 'movie', default: [] },
     ],

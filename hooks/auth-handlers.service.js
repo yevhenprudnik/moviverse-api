@@ -1,6 +1,5 @@
 import { TokenService } from '../services/token.service.js';
 import { UserService } from '../services/user.service.js';
-import { ObjectId } from 'mongodb';
 
 export class AuthHandlersService {
   constructor(jwt) {
@@ -39,7 +38,6 @@ export class AuthHandlersService {
 
       request.user = user;
     } catch (e) {
-      console.log(e);
       throw new Error('Unauthorized');
     }
   };

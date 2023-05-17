@@ -14,13 +14,13 @@ export default async fastify => {
         ? { title: { $regex: keyword, $options: 'i' } }
         : {};
 
-      return service.find(searchQuery);
+      return service.find(searchQuery, ['author', 'movies']);
     }
   );
 
   fastify.get(
     '/:id',
-    { ...Schemas.getCollection, preHandler: fastify.useAccessAuth },
+    // { ...Schemas.getCollection, preHandler: fastify.useAccessAuth },
     async (request, reply) => {
       return service.findById(request.params.id, ['author', 'movies']);
     }

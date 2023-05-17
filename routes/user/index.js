@@ -18,13 +18,14 @@ export default async fastify => {
     }
   );
 
-  fastify.get(
-    '/:id',
-    { ...Schemas.getUser, preHandler: fastify.useAccessAuth },
-    async (request, reply) => {
-      return service.findById(request.params.id, ['collections']);
-    }
-  );
+  fastify.get('/:id', async (request, reply) => {
+    return service.findById(request.params.id, {
+      path: 'collections',
+      populate: {
+        path: 'movies author',
+      },
+    });
+  });
 
   fastify.patch(
     '/',

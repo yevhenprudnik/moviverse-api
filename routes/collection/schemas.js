@@ -12,6 +12,7 @@ const author = {
 export const collection = {
   _id: typeString,
   title: typeString,
+  image: typeString,
 };
 
 export const getCollection = {
@@ -51,7 +52,17 @@ export const getCollections = {
         type: 'array',
         items: {
           type: 'object',
-          properties: collection,
+          properties: {
+            ...collection,
+            movies: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: movie,
+              },
+            },
+            author,
+          },
         },
       },
     },
@@ -63,12 +74,24 @@ export const createCollection = {
     body: {
       type: 'object',
       required: ['title'],
-      properties: collection,
+      properties: {
+        ...collection,
+        movies: {
+          type: 'array',
+          items: typeString,
+        },
+      },
     },
     response: {
       '2xx': {
         type: 'object',
-        properties: collection,
+        properties: {
+          ...collection,
+          movies: {
+            type: 'array',
+            items: typeString,
+          },
+        },
       },
     },
   },
