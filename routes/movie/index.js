@@ -10,7 +10,7 @@ export default async fastify => {
     async (request, reply) => {
       const keyword = request.query.keyword;
 
-      const searchQuery = keyword.length
+      const searchQuery = keyword?.length
         ? { title: { $regex: keyword, $options: 'i' } }
         : {};
 
